@@ -6,7 +6,6 @@ import model
 
 
 def AsDict(guest):
-<<<<<<< HEAD
   #jsonEncoder = jsonEncoder(guest.dateTime)
   return {'id': guest.key.id(), 'time': guest.dateTime, 'first': guest.first, 'last': guest.last}
 
@@ -15,10 +14,8 @@ class jsonEncoder(json.JSONEncoder):
     if isinstance(obj, datetime.datetime):
       return obj.isoformat()
     return(json.jsonEncoder.default(self, obj))
-=======
   return {'id': guest.key.id(), 'first': guest.first, 'last': guest.last}
 
->>>>>>> parent of c711254... added api for device
 
 class RestHandler(webapp2.RequestHandler):
 
@@ -30,7 +27,7 @@ class RestHandler(webapp2.RequestHandler):
   def SendJson(self, r):
     self.response.headers['content-type'] = 'text/plain'
     self.response.write(json.dumps(r))
-    
+
 
 class QueryHandler(RestHandler):
 
@@ -71,5 +68,3 @@ APP = webapp2.WSGIApplication([
     ('/rest/delete', DeleteHandler),
     ('/rest/update', UpdateHandler),
 ], debug=True)
-
-
