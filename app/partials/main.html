@@ -1,7 +1,10 @@
 <h2>Guest list</h2>
-<button ng-click="invite()">Invite another guest</button>
-<div ng-repeat="guest in guests | orderBy:'last' | orderBy:'first'">
-  <button ng-click="delete(guest)">delete</button>
-  <button ng-click="update(guest)">update</button>
-  {{ $index + 1 }}. <b>{{guest.id}} ----> {{ guest.first }} {{ guest.last }} {{guest.time}}</b>
+<button ng-click="add()">Add another device</button>
+<div ng-repeat="device in devices | orderBy:'last' | orderBy:'first'">
+  <button ng-click="delete(device)">delete</button>
+  <button ng-click="update(device)">update</button>
+  {{ $index + 1 }}. <b>{{device.id}} ---->
+      {{ device.first }}
+      {{ device.last }}
+      {{device.time}}</b>
 </div>

@@ -87,7 +87,7 @@ APP = webapp2.WSGIApplication([
     ('/rest/insert', InsertHandler),
     ('/rest/delete', DeleteHandler),
     ('/rest/update', UpdateHandler),
-    ('/api/device/(.+)\/checkin', CheckinDeviceCheckinHandler),
+    ('/api/device/(.+)/checkin', CheckinDeviceCheckinHandler),
     ('/api/device/(.+)', GetDeviceHandler),
-    ('/api/device', GetAllDeviceHandler),
+    ('/api/device/', GetAllDeviceHandler),
 ], debug=True)
