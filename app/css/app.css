@@ -3,3 +3,19 @@
   padding: 1em;
   height: 1em;
 }
+
+.information{
+	margin-left: 2%;
+}
+
+ul{
+	list-style-type: none;
+}
+
+.Open{
+	color: green;
+}
+
+.Closed{
+	color: red;
+}

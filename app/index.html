@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="App">
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css">
     <!-- build:js js/lib.js -->
     <script src="/js/libs/angular/angular.js"></script>
@@ -20,8 +21,10 @@
     <!-- endbuild -->
   </head>
   <body>
-    <h1>AngularJS Guest List</h1>
-    <pre class="status" ng-bind="status"></pre>
-    <div ui-view></div>
+        <div class="jumbotron">
+            <h2 class="text-center">Randolph-Macon College Library Study Rooms</h2>
+            <pre class="status" ng-bind="status"></pre>
+            <div ui-view></div>
+        </div>
   </body>
 </html>

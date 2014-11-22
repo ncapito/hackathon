@@ -1,10 +1,35 @@
-<h2>Guest list</h2>
-<button ng-click="add()">Add another device</button>
-<div ng-repeat="device in devices | orderBy:'last' | orderBy:'first'">
-  <button ng-click="delete(device)">delete</button>
-  <button ng-click="update(device)">update</button>
-  {{ $index + 1 }}. <b>{{device.id}} ---->
-      {{ device.first }}
-      {{ device.last }}
-      {{device.time}}</b>
+<div class="container well">
+
+<!--<button ng-click="add()">Add another device</button>-->
+<ul>
+<li ng-repeat="device in devices | orderBy:'last' | orderBy:'first'">
+  <!--<button ng-click="delete(device)">delete</button>
+  <button ng-click="update(device)">update</button><br />-->
+  	<div ng-if="device.label =='Module#1'">
+  		<b>Room Number:</b> 3
+  	</div>
+  	<div ng-if="device.label == 'Module#2'">
+  		<b>Room Number:</b> 6
+  	</div>
+  	<div ng-if="device.label == 'Module#3'">
+  		<b>Room Number:</b> 4
+  	</div>
+  	<div ng-if="device.label == 'Module#4'">
+  		<b>Room Number:</b> 1
+  	</div>
+  	<div ng-if="device.label == 'Module#5'">
+  		<b>Room Number:</b> 2
+  	</div>
+  	<div ng-if="device.label == 'Module#6'">
+  		<b>Room Number:</b> 5
+  	</div>
+
+    <div ng-if="device.is_connected">
+    	<b>Status:</b> <span class="Closed">Closed</span>
+    </div>
+    <div ng-if="!device.is_connected">
+    	<b>Status:</b> <span class="Open">Open</span>
+    </div><br />
+</li>
+</ul>
 </div>
