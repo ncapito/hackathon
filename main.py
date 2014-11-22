@@ -1,13 +1,12 @@
 import json
 import webapp2
 import time
-import datetime
+
 import model
-import json
-from json import JSONEncoder
 
 
 def AsDict(guest):
+<<<<<<< HEAD
   #jsonEncoder = jsonEncoder(guest.dateTime)
   return {'id': guest.key.id(), 'time': guest.dateTime, 'first': guest.first, 'last': guest.last}
 
@@ -16,6 +15,10 @@ class jsonEncoder(json.JSONEncoder):
     if isinstance(obj, datetime.datetime):
       return obj.isoformat()
     return(json.jsonEncoder.default(self, obj))
+=======
+  return {'id': guest.key.id(), 'first': guest.first, 'last': guest.last}
+
+>>>>>>> parent of c711254... added api for device
 
 class RestHandler(webapp2.RequestHandler):
 
@@ -26,7 +29,8 @@ class RestHandler(webapp2.RequestHandler):
 
   def SendJson(self, r):
     self.response.headers['content-type'] = 'text/plain'
-    self.response.write(json.dumps(r,cls=JSONDateEncoder))
+    self.response.write(json.dumps(r))
+    
 
 class QueryHandler(RestHandler):
 
@@ -34,27 +38,6 @@ class QueryHandler(RestHandler):
     guests = model.AllGuests()
     r = [ AsDict(guest) for guest in guests ]
     self.SendJson(r)
-
-
-class CheckinDeviceCheckinHandler(RestHandler):
-
-  def get(self):
-    guests = model.AllGuests()
-    r = [ AsDict(guest) for guest in guests ]
-    self.SendJson(r)
-
-
-class GetAllDeviceHandler(RestHandler):
-
-  def get(self):
-    guests = model.AllGuests()
-    r = [ AsDict(guest) for guest in guests ]
-    self.SendJson(r)
-
-class GetDeviceHandler(RestHandler):
-
-  def get(self, deviceID):
-    self.SendJson({'DeviceID': deviceID, 'dateTime': datetime.datetime.now()})
 
 
 class UpdateHandler(RestHandler):
@@ -87,7 +70,6 @@ APP = webapp2.WSGIApplication([
     ('/rest/insert', InsertHandler),
     ('/rest/delete', DeleteHandler),
     ('/rest/update', UpdateHandler),
-    ('/api/device/(.+)\/checkin', CheckinDeviceCheckinHandler),
-    ('/api/device/(.+)', GetDeviceHandler),
-    ('/api/device', GetAllDeviceHandler),
 ], debug=True)
+
+
