@@ -30,10 +30,10 @@
 
   	<b>Room Number: </b> {{device.title}}
 
-    <div ng-if="device.percent > 0">
-    	<b>Status:</b> <span class="Closed">Closed</span>
+    <div ng-if="device.percent >10">
+    	<b>Status:</b> <span class="Closed">Occupied</span>
     </div>
-    <div ng-if="device.percent == Null">
+    <div ng-if="device.percent < 10">
     	<b>Status:</b> <span class="Open">Open</span>
     </div><br />
 </li>
