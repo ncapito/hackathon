@@ -1,8 +1,10 @@
 from google.appengine.ext import ndb
+import datetime
 
 class Guest(ndb.Model):
   first = ndb.StringProperty()
   last = ndb.StringProperty()
+  dateTime = ndb.DateTimeProperty()
 
 
 def AllGuests():
@@ -16,7 +18,7 @@ def UpdateGuest(id, first, last):
 
 
 def InsertGuest(first, last):
-  guest = Guest(first=first, last=last)
+  guest = Guest(first=first, last=last, dateTime=datetime.datetime.now())
   guest.put()
   return guest
 

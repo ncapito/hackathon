@@ -8,14 +8,14 @@ from json import JSONEncoder
 
 
 def AsDict(guest):
-  return {'id': guest.key.id(), 'first': guest.first, 'last': guest.last}
+  #jsonEncoder = jsonEncoder(guest.dateTime)
+  return {'id': guest.key.id(), 'time': guest.dateTime, 'first': guest.first, 'last': guest.last}
 
-
-class JSONDateEncoder(JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, datetime.date):
-            return obj.isoformat()
-        return JSONEncoder.default(self, obj)
+class jsonEncoder(json.JSONEncoder):
+  def default(self, obj):
+    if isinstance(obj, datetime.datetime):
+      return obj.isoformat()
+    return(json.jsonEncoder.default(self, obj))
 
 class RestHandler(webapp2.RequestHandler):
 
