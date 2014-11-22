@@ -110,18 +110,9 @@ class IDeviceHandler(RestHandler):
 
 
     def get(self, deviceID = None, action = None):
-        url = "https://api-http.littlebitscloud.cc/devices"
-        token = "e2110423b7a483d778daf6525141e2bbb694b8eb71cd04da1c27414f7e328711"
-        headers = { "Authorization" : "Bearer " + token,"Accept" : "application/vnd.littlebits.v2+json"}
-        if(deviceID is not None):
-            url += "/" + deviceID
-        if(action is not None):
-            url += "/" + action
-
-        print url
-        result = urlfetch.fetch(url, headers=headers)
-        self.response.headers['content-type'] = 'text/plain'
-        self.response.write(result.content)
+        d = model.AllDeviceUpdates()
+        r = [ device.to_dict() for device in d ]
+        self.SendJson(r)
 
 
 
