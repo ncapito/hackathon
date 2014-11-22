@@ -5,11 +5,17 @@ import datetime
 class DeviceUpdate(ndb.Model):
   title = ndb.StringProperty()
   body = ndb.StringProperty()
+  percent = ndb.IntegerProperty()
   updateDate = ndb.DateTimeProperty()
 
 def AllDeviceUpdates():
     return DeviceUpdate.query()
-    
+
+def Save(deviceID, payload):
+    d = DeviceUpdate(title=deviceID, percent=payload, updateDate=datetime.datetime.now())
+    d.put()
+    return d
+
 def Update(title, body):
     d = DeviceUpdate(title=title, body=body, updateDate=datetime.datetime.now())
     d.put()

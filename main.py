@@ -5,6 +5,7 @@ import datetime
 import device as d
 import json
 import model
+import logging
 from json import JSONEncoder
 
 from google.appengine.api import urlfetch
@@ -84,11 +85,29 @@ class GetDeviceHandler(RestHandler):
     self.SendJson({'DeviceID': deviceID})
 
 class IDeviceHandler(RestHandler):
-    def get(self):
+    def post(self,deviceID = None):
+        r = json.loads(self.request.body)
+        logging.info("Just got something" + self.request.body)
+        device_id = None
+        payload = None
+        if('bit_id' in r):
+            bit_id = r['bit_id']
+        if('payload' in r):
+            payload = r['payload']['percent']
+        model.Save(bit_id, payload)
+        logging.info("saving " + bit_id + " " + str(payload))
+
+
+    def get(self, deviceID = None, action = None):
         url = "https://api-http.littlebitscloud.cc/devices"
         token = "e2110423b7a483d778daf6525141e2bbb694b8eb71cd04da1c27414f7e328711"
         headers = { "Authorization" : "Bearer " + token,"Accept" : "application/vnd.littlebits.v2+json"}
+        if(deviceID is not None):
+            url += "/" + deviceID
+        if(action is not None):
+            url += "/" + action
 
+        print url
         result = urlfetch.fetch(url, headers=headers)
         self.response.headers['content-type'] = 'text/plain'
         self.response.write(result.content)
@@ -126,7 +145,9 @@ APP = webapp2.WSGIApplication([
     ('/rest/delete', DeleteHandler),
     ('/rest/update', UpdateHandler),
     ('/api/idevices/', IDeviceHandler),
-    ('/api/deviceupdate/', CheckinDeviceUpdateHandler),
+    ('/api/idevices/(.*)', IDeviceHandler),
+    ('/api/idevices/(.*)/(.*)', IDeviceHandler),
+    ('/api/deviceupdate', CheckinDeviceUpdateHandler),
     ('/api/devices/', DeviceUpdateHandler),
     ('/api/device/(.+)/checkIn', CheckinDeviceCheckinHandler),
     ('/api/device/(.+)', GetDeviceHandler),

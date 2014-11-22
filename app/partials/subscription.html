@@ -1,0 +1,56 @@
+<h2>Subscriptions </h2>
+<button ng-click="add()">Add </button>
+<div ng-repeat="s in subscriptions | orderBy:'last' | orderBy:'first'">
+<pre>{{s|json}}</pre>
+<button ng-click="delete(s)">Delete</button>
+<input ng-model="s.duration_ms" />
+<button ng-click="slowDown(s)">SlowDown</button>
+</div>
+
+
+<div ng-if="addMe">
+<h2>Add new subscription</h2>
+  <form ng-submit="create()">
+    <p>
+      <label>publisher_id:</label>
+      <input type="text" ng-model="subscription.publisher_id" autofocus="true" placeholder='device' />
+    </p>
+    <p>
+      <label>subscriber_id:</label>
+      <input type="text" ng-model="subscription.subscriber_id" placeholder="http://foo.com/bar" />
+    </p>
+    <input type="submit" class="btn" />
+  </form>
+
+</div>
+
+<div >
+<h2>Enter Device to slow down</h2>
+  <form >
+    <p>
+      <label>device_id:</label>
+      <input type="text" ng-model="device.device_id" autofocus="true" placeholder='device' />
+      <input type="text" ng-model="device.duration_ms" autofocus="true" placeholder='duration_ms' />
+    </p>
+    <button ng-click="device.$output()">Slowdown</button>
+  </form>
+
+</div>
+
+
+
+<div >
+<h2>Tester</h2>
+  <form >
+    <p>
+      <label>device_id:</label>
+      <input type="text" ng-model="test.device_id" autofocus="true" placeholder='device_id' />
+    </p>
+    <p>
+      <label>payload:</label>
+      <input type="text" ng-model="test.payload" />
+    </p>
+    <button ng-click="test.$save()">Save</button>
+  </form>
+
+</div>

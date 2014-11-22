@@ -12,6 +12,11 @@ angular.module('App').config(function($stateProvider, $urlRouterProvider, $httpP
       templateUrl: '/partials/main.html',
       resolve    : { 'guestService': 'guestService' },
     })
+    .state('subscriptions', {
+      url: "/s",
+      controller : 'SubscriptionCtrl',
+      templateUrl: '/partials/subscription.html'
+    })
     .state('add', {
       url: "/add",
       controller : 'InsertCtrl',
