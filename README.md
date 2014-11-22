@@ -1,3 +1,16 @@
+Tools you will need:
+
+https://github.com/ncapito/hackathon.git
+
+https://cloud.google.com/appengine/downloads
+
+Download the python one.  When installing select a directory in your user directory.
+
+Editor:
+ Sublime:   http://www.sublimetext.com/
+
+
+
 ## App Engine AngularJS "Hello World" Python
 
 A simple [AngularJS](http://angularjs.org/) CRUD application
