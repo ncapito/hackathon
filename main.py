@@ -7,6 +7,8 @@ import json
 import model
 from json import JSONEncoder
 
+from google.appengine.api import urlfetch
+
 
 def AsDict(device):
   return {'id': device.key.id(), 'activity': device.activity, 'lastCheckIn': device.lastCheck, 'room': device.room, 'deviceID': device.deviceID}
@@ -45,10 +47,27 @@ class QueryHandler(RestHandler):
 
     #self.SendJson(temp)
 
+
 class CheckinDeviceCheckinHandler(RestHandler):
 
   def get(self, deviceID):
     r = d.UpdateDevice(deviceID, self.request.motion, datetime.datetime.now())
+    self.SendJson(r)
+
+
+class CheckinDeviceUpdateHandler(RestHandler):
+
+  def post(self):
+    r = json.loads(self.request.body)
+    model.Update(r['title'], r['body'])
+    self.SendJson(r)
+
+
+class DeviceUpdateHandler(RestHandler):
+
+  def get(self):
+    d = model.AllDeviceUpdates()
+    r = [ device.to_dict() for device in d ]
     self.SendJson(r)
 
 
@@ -63,6 +82,18 @@ class GetDeviceHandler(RestHandler):
 
   def get(self, deviceID, activity):
     self.SendJson({'DeviceID': deviceID})
+
+class IDeviceHandler(RestHandler):
+    def get(self):
+        url = "https://api-http.littlebitscloud.cc/devices"
+        token = "e2110423b7a483d778daf6525141e2bbb694b8eb71cd04da1c27414f7e328711"
+        headers = { "Authorization" : "Bearer " + token,"Accept" : "application/vnd.littlebits.v2+json"}
+
+        result = urlfetch.fetch(url, headers=headers)
+        self.response.headers['content-type'] = 'text/plain'
+        self.response.write(result.content)
+
+
 
 class UpdateHandler(RestHandler):
 
@@ -94,7 +125,10 @@ APP = webapp2.WSGIApplication([
     ('/rest/insert', InsertHandler),
     ('/rest/delete', DeleteHandler),
     ('/rest/update', UpdateHandler),
-    ('/api/device/(.+)/checkin', CheckinDeviceCheckinHandler),
-    ('/api/device/(.+)/', GetDeviceHandler),
+    ('/api/idevices/', IDeviceHandler),
+    ('/api/deviceupdate/', CheckinDeviceUpdateHandler),
+    ('/api/devices/', DeviceUpdateHandler),
+    ('/api/device/(.+)/checkIn', CheckinDeviceCheckinHandler),
+    ('/api/device/(.+)', GetDeviceHandler),
     ('/api/device/', GetAllDeviceHandler),
 ], debug=True)

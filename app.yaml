@@ -4,6 +4,13 @@ runtime: python27
 threadsafe: true
 api_version: 1
 
+skip_files:
+  - ^(.*/)?\.md.*
+  - ^(.*/)?\.scss.*
+  - ^\.git/*
+  - ^node_modules/*
+  - ^(.*/)?\.map.*
+
 handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
