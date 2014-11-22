@@ -9,7 +9,7 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
-- url: /rest/.*
+- url: /(api|rest)/.*
   script: main.APP
 
 - url: (.*)/
