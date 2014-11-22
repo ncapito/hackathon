@@ -95,7 +95,7 @@ class IDeviceHandler(RestHandler):
         if('payload' in r):
             payload = r['payload']['percent']
         model.Save(bit_id, payload)
-        logging.info("saving " + bit_id + " " + str(payload))
+        logging.info(" saving " + bit_id + " " + str(payload))
 
 
     def get(self, deviceID = None, action = None):
@@ -146,6 +146,7 @@ APP = webapp2.WSGIApplication([
     ('/rest/update', UpdateHandler),
     ('/api/idevices/', IDeviceHandler),
     ('/api/idevices/(.*)', IDeviceHandler),
+    ('/api/devices/(.*)', IDeviceHandler),
     ('/api/idevices/(.*)/(.*)', IDeviceHandler),
     ('/api/deviceupdate', CheckinDeviceUpdateHandler),
     ('/api/devices/', DeviceUpdateHandler),

@@ -1,5 +1,21 @@
 <h2>Subscriptions </h2>
 <button ng-click="add()">Add </button>
+
+<div ng-if="addMe">
+<h2>Add new subscription</h2>
+  <form ng-submit="create()">
+    <p>
+      <label>publisher_id:</label>
+      <select ng-options="d.id as d.id for d in devices" ng-model="subscription.publisher_id">
+      </select>
+    </p>
+
+    <input type="submit" class="btn" />
+  </form>
+
+</div>
+
+
 <div ng-repeat="s in subscriptions | orderBy:'last' | orderBy:'first'">
 <pre>{{s|json}}</pre>
 <button ng-click="delete(s)">Delete</button>
@@ -7,22 +23,6 @@
 <button ng-click="slowDown(s)">SlowDown</button>
 </div>
 
-
-<div ng-if="addMe">
-<h2>Add new subscription</h2>
-  <form ng-submit="create()">
-    <p>
-      <label>publisher_id:</label>
-      <input type="text" ng-model="subscription.publisher_id" autofocus="true" placeholder='device' />
-    </p>
-    <p>
-      <label>subscriber_id:</label>
-      <input type="text" ng-model="subscription.subscriber_id" placeholder="http://foo.com/bar" />
-    </p>
-    <input type="submit" class="btn" />
-  </form>
-
-</div>
 
 <div >
 <h2>Enter Device to slow down</h2>
