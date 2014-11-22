@@ -12,8 +12,8 @@ angular.module('App').config(function($stateProvider, $urlRouterProvider, $httpP
       templateUrl: '/partials/main.html',
       resolve    : { 'guestService': 'guestService' },
     })
-    .state('invite', {
-      url: "/invite",
+    .state('add', {
+      url: "/add",
       controller : 'InsertCtrl',
       templateUrl: '/partials/insert.html'
     })

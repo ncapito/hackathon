@@ -31,10 +31,14 @@ class RestHandler(webapp2.RequestHandler):
 class QueryHandler(RestHandler):
 
   def get(self):
-    guests = model.AllGuests()
-    r = [ AsDict(guest) for guest in guests ]
-    self.SendJson(r)
+    #guests = model.AllGuests()
+    #r = [ AsDict(guest) for guest in guests ]
+    #self.SendJson(r)
+    temp = model.Test()
+    if temp != None:
+        temp = temp.to_dict()
 
+    self.SendJson(temp)
 
 class CheckinDeviceCheckinHandler(RestHandler):
 

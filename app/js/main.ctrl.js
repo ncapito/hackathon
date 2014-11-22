@@ -2,7 +2,7 @@
 angular.module('App').controller('MainCtrl', function($scope, $rootScope, $log, $http, $stateParams, $location, $state) {
 
   $scope.add = function() {
-    $location.path('/api/device');
+    $location.path('/add');
   };
 
   $scope.update = function(guest) {

@@ -10,6 +10,8 @@ class Guest(ndb.Model):
 def AllGuests():
   return Guest.query()
 
+def Test():
+    return Guest.query().filter(ndb.StringProperty("first") == 'Nick').get()
 
 def UpdateGuest(id, first, last):
   guest = Guest(id=id, first=first, last=last)
