@@ -10,6 +10,19 @@ Editor:
  Sublime:   http://www.sublimetext.com/
 
 
+Download Python27 and extract to homepage.
+
+
+
+Launch Appengine SDK and setup preferences  - 
+ Set python27
+ Appengine directory
+
+
+
+ Make sure you have permissions to change files.
+
+ 
 
 ## App Engine AngularJS "Hello World" Python
 
