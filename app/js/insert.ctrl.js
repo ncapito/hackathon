@@ -2,7 +2,7 @@
   $scope.device = {};
   $scope.submitInsert = function() {
     $rootScope.status = 'Creating...';
-    $http.post('/api/deviceupdate/', $scope.device)
+    $http.post('/api/devices/', $scope.device)
     .success(function(data, status, headers, config) {
       $rootScope.devices.push(data);
       $rootScope.status = '';

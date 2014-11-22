@@ -19,7 +19,7 @@ App.factory('myHttpInterceptor', function($rootScope, $q) {
 App.factory('guestService', function($rootScope, $http, $q, $log) {
   $rootScope.status = 'Retrieving data...';
   var deferred = $q.defer();
-  $http.get('/api/idevices/')
+  $http.get('/api/devices/')
   .success(function(data, status, headers, config) {
     $rootScope.devices = data;
     deferred.resolve();

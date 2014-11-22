@@ -5,29 +5,35 @@
 <li ng-repeat="device in devices | orderBy:'last' | orderBy:'first'">
   <!--<button ng-click="delete(device)">delete</button>
   <button ng-click="update(device)">update</button><br />-->
-  	<div ng-if="device.label =='Module#1'">
+  	<div ng-if="device.title =='Module#1'">
   		<b>Room Number:</b> 3
   	</div>
-  	<div ng-if="device.label == 'Module#2'">
+  	<div ng-if="device.title == 'Module#2'">
   		<b>Room Number:</b> 6
   	</div>
-  	<div ng-if="device.label == 'Module#3'">
+  	<div ng-if="device.title == 'Module#3'">
   		<b>Room Number:</b> 4
   	</div>
-  	<div ng-if="device.label == 'Module#4'">
+  	<div ng-if="device.title == 'Module#4'">
   		<b>Room Number:</b> 1
   	</div>
-  	<div ng-if="device.label == 'Module#5'">
+  	<div ng-if="device.title == 'Module#5'">
   		<b>Room Number:</b> 2
   	</div>
-  	<div ng-if="device.label == 'Module#6'">
+  	<div ng-if="device.title == 'Module#6'">
   		<b>Room Number:</b> 5
   	</div>
 
-    <div ng-if="device.is_connected">
+  	<!--<div ng-if="!(device.title == 'Module#6') || !(device.title == 'Module#5') || !(device.title == 'Module#4') || !(device.title == 'Module#3') || !(device.title == 'Module#2') || !(device.title == 'Module#1')"> 
+  		<b>Room Number: </b> {{device.title}}
+  	</div>-->
+
+  	<b>Room Number: </b> {{device.title}}
+
+    <div ng-if="device.percent > 0">
     	<b>Status:</b> <span class="Closed">Closed</span>
     </div>
-    <div ng-if="!device.is_connected">
+    <div ng-if="device.percent == Null">
     	<b>Status:</b> <span class="Open">Open</span>
     </div><br />
 </li>

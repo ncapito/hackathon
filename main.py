@@ -70,7 +70,18 @@ class DeviceUpdateHandler(RestHandler):
     d = model.AllDeviceUpdates()
     r = [ device.to_dict() for device in d ]
     self.SendJson(r)
-
+    
+  def post(self):
+        r = json.loads(self.request.body)
+        logging.info("Just got something" + self.request.body)
+        title = None
+        percent = None
+        if('title' in r):
+            title = r['title']
+        if('percent' in r):
+            percent = r['percent']
+        model.Save(title, percent)
+        logging.info("saving " + title + " " + str(percent))
 
 class GetAllDeviceHandler(RestHandler):
 
