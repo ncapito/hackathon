@@ -1,46 +1,24 @@
-Tools you will need:
-
-https://github.com/ncapito/hackathon.git
-
-https://cloud.google.com/appengine/downloads
-
-Download the python one.  When installing select a directory in your user directory.
-
-Editor:
- Sublime:   http://www.sublimetext.com/
+## Installation the app locally
+1.  Pick a place to unpack everything (baseDir).  eg: Desktop/hackathon
+1.  Download the [AppEngineSDK](https://cloud.google.com/appengine/downloads ) and unzip it to baseDir/AppengineSDK
+1.  Download Python2.7.6 (if its not already installed.  Do not get 2.7.7 it will not work) and unpack it to baseDir/Python27
+1.  Download [Windows Git](https://windows.github.com/)
+1.  Optional:  Install [Sublime Text]( http://www.sublimetext.com/) (you need to use the standalone version).  Unpack to baseDir/Sublime
 
 
-Download Python27 and extract to homepage.
+#Configuration
+1.  Checkout the source from [Hackathon](https://github.com/ncapito/hackathon.git) .  Find  a tutorial online for this one :https://help.github.com/articles/getting-started-with-github-for-windows/
+1.  Launch the App Engine SDK
+1.  Click Preferences.  Set the Pyhon27 & AppengineSDK Path Above
+1.  Open an Existing project
 
 
-
-Launch Appengine SDK and setup preferences  - 
- Set python27
- Appengine directory
-
-
-
- Make sure you have permissions to change files.
-
- 
-
-## App Engine AngularJS "Hello World" Python
-
-A simple [AngularJS](http://angularjs.org/) CRUD application
-for [Google App Engine](https://appengine.google.com/).
-
-Author: Fred Sauer <fredsa@google.com>
-
-
-## Project setup
-
-1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads)
-
-
-## Testing the app locally
+## Run the app locally
 
 To run the app locally:
 
+1. Open the Appengine SDK and click run
+2. Launch via command line:
 ```
 dev_appserver.py .
 ```
@@ -50,20 +28,9 @@ dev_appserver.py .
 
 To deploy the application:
 
-1. Use the [Google Cloud Console](https://cloud.google.com/console) to create a project
-1. Replace `your-app-id` in `app.yaml` with the project id from the previous step
-1. Deploy the application:
+1. You can use the Appengine SDK Console.  Just click the app and hit publish.
+1. Or can deploy via console:
 
 ```
-appcfg.py --oauth2 update .
+appcfg.py update .
 ```
-
-
-## Contributing changes
-
-See [CONTRIB.md](CONTRIB.md)
-
-
-# Licensing
-
-See [LICENSE](LICENSE)
