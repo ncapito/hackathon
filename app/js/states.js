@@ -19,12 +19,8 @@ angular.module('App').config(function($stateProvider, $urlRouterProvider, $httpP
     })
     .state('add', {
       url: "/add",
-      controller : 'InsertCtrl',
-      templateUrl: '/partials/insert.html'
-    })
-    .state('update', {
-      controller : 'UpdateCtrl',
-      templateUrl: '/partials/update.html',
-      resolve    : { 'guestService': 'guestService' },
+      controller : 'DeviceAddCtrl',
+      templateUrl: '/partials/device.add.html'
     });
+
   });

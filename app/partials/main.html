@@ -1,7 +1,7 @@
-<div class="container well">
+<div>
 
-<!--<button ng-click="add()">Add another device</button>-->
-<ul>
+<h1>Devices.<a class='pull-right' ui-sref="add">Add Device</a></h1>
+<ul ng-if="devices.length" class='well'>
 <li ng-repeat="device in devices | orderBy:'last' | orderBy:'first'">
   <!--<button ng-click="delete(device)">delete</button>
   <button ng-click="update(device)">update</button><br />-->
@@ -24,7 +24,7 @@
   		<b>Room Number:</b> 5
   	</div>
 
-  	<!--<div ng-if="!(device.title == 'Module#6') || !(device.title == 'Module#5') || !(device.title == 'Module#4') || !(device.title == 'Module#3') || !(device.title == 'Module#2') || !(device.title == 'Module#1')"> 
+  	<!--<div ng-if="!(device.title == 'Module#6') || !(device.title == 'Module#5') || !(device.title == 'Module#4') || !(device.title == 'Module#3') || !(device.title == 'Module#2') || !(device.title == 'Module#1')">
   		<b>Room Number: </b> {{device.title}}
   	</div>-->
 

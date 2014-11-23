@@ -1,4 +1,4 @@
- angular.module('App').controller('InsertCtrl', function($scope, $rootScope, $log, $http, $stateParams, $location, $state) {
+ angular.module('App').controller('DeviceAddCtrl', function($scope, $rootScope, $log, $http, $stateParams, $location, $state) {
   $scope.device = {};
   $scope.submitInsert = function() {
     $rootScope.status = 'Creating...';
