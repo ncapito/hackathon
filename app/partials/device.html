@@ -1,0 +1,47 @@
+<h2>Devices</h2>
+<div class="well">
+
+  <div ng-repeat="d in devices">
+    <h1 ng-class="{'text-success': d.is_connected, 'text-danger': !d.is_connected}">{{d.label}}-{{d.id}} <span ng-if="d.ap">(ap: {{d.ap}})</span></h1>
+    <h4>UserID: {{d.user_id}}</h4>
+    <button class="btn btn-success" ng-if="!hasRMCSubscriber(d)" ng-click="addRMCSubscriber(d)">Add RMC Listener</button>
+    <button ng-click="d._edit = true" class="btn btn-success">Edit</button>
+    <button ng-click="getInput(d)" class="btn btn-primary" ng-disabled="!d.is_connected || d.processing">Get Current Reading</button>
+
+    <button ng-click="delete(d)" class="btn btn-danger">Delete</button>
+    <button ng-click="d._show = !d._show" class="btn btn-warning">Show Raw Data</button>
+    <div ng-if="d.lastInput">
+      Last Reading was : <pre>{{d.lastInput|json}}<pre>
+    </div>
+    <pre ng-if="d._show">{{d|json}}</pre>
+    <div ng-if="d._edit">
+      <label for="label"><input  name='label' ng-model="d.label" />
+      <button class="btn btn-success" ng-click="save(d)">Save</button>
+      <button class="btn btn-warning"  ng-click="d._edit = false;d.$get()">Cancel</button>
+    </div>
+
+    <div ng-if="d.subscribers.length">
+      <h2>Subscribers</h2>
+      <ul>
+        <li ng-repeat="s in d.subscribers" style="margin-bottom: 15px;">
+          <div>SubscriberID: {{s.sid}}</div>
+          <div>DeviceID: {{s.pid}}</div>
+          <button class="btn btn-danger" ng-click="deleteSubscriber(s,d)">Delete</button>
+          <button class="btn btn-success" ng-click="s._show = !s._show">Toggle</button>
+          <pre ng-show="s._show">{{s.data|json}}</pre>
+        </li>
+      </ul>
+    </div>
+    <div ng-if="d.subscriptions.length">
+      <h2>Subscriptions</h2>
+      <ul>
+        <li ng-repeat="s in d.subscriptions">
+
+          <pre>{{s|json}}</pre>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

@@ -1,3 +1,5 @@
+(function(angular){
+
 'use strict';
 
 var App = angular.module('App', ['ngResource','ui.router','ngAnimate']);
@@ -31,5 +33,10 @@ App.factory('guestService', function($rootScope, $http, $q, $log) {
 
 
 App.config(function($httpProvider) {
+  $httpProvider.defaults.headers.common.Authorization = 'Bearer e2110423b7a483d778daf6525141e2bbb694b8eb71cd04da1c27414f7e328711';
+  $httpProvider.defaults.headers.common.Accept = 'application/vnd.littlebits.v2+json';
+  $httpProvider.defaults.headers.delete = { "Content-Type": "application/json;charset=utf-8" };
   $httpProvider.interceptors.push('myHttpInterceptor');
 });
+
+})(angular);
